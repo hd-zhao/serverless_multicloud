@@ -1,0 +1,28 @@
+{
+    "aws":{
+        "free-gbs":400000,
+        "gbs": 0.0000166667,
+        "free-request":1000000,
+        "request": 0.0000002,
+        "network": 0.09,
+        "free-network":100
+    },
+    "google":{
+        "free-gbs":400000,
+        "gbs": 0.0000025,
+        "request": 0.0000004,
+        "free-request":2000000,
+        "ghz": 0.0000100,
+        "free-ghz":200000,
+        "network": 0.12,
+        "free-network":5
+    },
+    "alibaba":{
+        "free-gbs":400000,
+        "gbs": 0.00001668,
+        "free-request":1000000,
+        "request": 0.0000002,
+        "network": 0.07,
+        "free-network":0
+    }
+}
