@@ -1,0 +1,25 @@
+
+
+{
+    "aws":{ 
+        "credential": "~/credential/aws.json",
+        "5mb":{
+            "bucket": "thumbnail-london",
+            "picture": "../benchmark_dataset/thumbnail_picture/5mb.jpg"
+        }
+    },
+    "google":{ 
+        "credential": "~/credential/google_cloud.json",
+        "5mb":{
+            "bucket": "thumbnail-london",
+            "picture": "../benchmark_dataset/thumbnail_picture/5mb.jpg"
+        }
+    },
+    "alibaba":{ 
+        "credential": "~/credential/alibaba.json",
+        "5mb":{
+            "bucket": "thumbnail-london",
+            "picture": "../benchmark_dataset/thumbnail_picture/5mb.jpg"
+        }
+    }
+}
