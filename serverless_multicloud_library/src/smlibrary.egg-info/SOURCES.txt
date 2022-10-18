@@ -10,9 +10,9 @@ src/smlibrary/object_storage/gcs.py
 src/smlibrary/object_storage/oss.py
 src/smlibrary/object_storage/r2.py
 src/smlibrary/object_storage/s3.py
-src/smlibrary/object_storage/aws_convert/__init__.py
-src/smlibrary/object_storage/aws_convert/to_gcs.py
-src/smlibrary/object_storage/aws_convert/to_oss.py
+src/smlibrary/object_storage/mocked_s3/__init__.py
+src/smlibrary/object_storage/mocked_s3/to_gcs.py
+src/smlibrary/object_storage/mocked_s3/to_oss.py
 src/smlibrary/trigger/__init__.py
 src/smlibrary/trigger/alibaba_trigger.py
 src/smlibrary/trigger/aws_trigger.py

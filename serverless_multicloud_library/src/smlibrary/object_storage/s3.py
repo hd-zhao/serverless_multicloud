@@ -53,7 +53,7 @@ def download_fileobj(bucket, credential, bucket_object_path=None, local_object_p
         logging.error(e)
         return False
 
-def delete_object(bucket, credential, bucket_object_path=None, local_object_path=None):#delete_object
+def delete_object(bucket, credential, bucket_object_path, local_object_path=None):#delete_object
     s3_client = input_credential(credential)
     try:
         response = s3_client.delete_object(Bucket=bucket, Key=bucket_object_path)

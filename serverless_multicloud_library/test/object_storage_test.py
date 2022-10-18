@@ -6,6 +6,7 @@ import sys
 #print(os.path.dirname(os.path.abspath(__file__)))
 #print(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+#print(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 
 from src.smlibrary.object_storage import s3
 from src.smlibrary.object_storage import gcs
@@ -15,17 +16,28 @@ from src.smlibrary.object_storage import r2
 #AWS S3 test
 #s3.upload_file("thumbnail-london","../../credential/aws.json","cat.jpg","../../benchmark_dataset/thumbnail_picture/5mb.jpg")
 
-#Google Cloud test
+#Google Storage test
 #gcs.upload_file("thumbnail-london","../../credential/google_cloud.json","cat.jpg","../../benchmark_dataset/thumbnail_picture/5mb.jpg")
 
-#Alibaba 
+#Alibaba oss test
+#oss.upload_file("thumbnail-london", "/Users/haidongzhao/credential/alibaba.json","cat.jpg", "../../benchmark_dataset/thumbnail_picture/5mb.jpg")
+#oss.delete_object("thumbnail-london", "/Users/haidongzhao/credential/alibaba.json","cat.jpg")
 
-#cloudflare
-#r2.upload_file("thumbnailcf","../../credential/cloudflare.json","cat.jpg","../../benchmark_dataset/thumbnail_picture/5mb.jpg")
 
-from src.smlibrary.object_storage.aws_convert import to_gcs
-from src.smlibrary.object_storage.aws_convert import to_oss
-#to_gcs.upload_file("../../benchmark_dataset/thumbnail_picture/5mb.jpg","thumbnail-london","cat.jpg","../../credential/google_cloud.json")
-#buf = to_gcs.get_object("thumbnail-london","cat.jpg","../../credential/google_cloud.json")
+# mocked AWS SDKs
+#test GCS
+from src.smlibrary.object_storage.mocked_s3.to_gcs import to_gcs
+#aws_gcs = to_gcs("/Users/haidongzhao/credential/google_cloud.json")
+#aws_gcs.upload_file("../../benchmark_dataset/thumbnail_picture/5mb.jpg","thumbnail-london","cat.jpg")
+#aws_gcs.delete_object("thumbnail-london", "cat.jpg")
+#buf = aws_gcs.get_object("thumbnail-london","cat.jpg")
+#aws_gcs.download_file("thumbnail-london", "cat.jpg", "cat.jpg")
 
-to_oss.upload_file("../../benchmark_dataset/thumbnail_picture/5mb.jpg","normali","cat.jpg","../../credential/alibaba.json")
+# mocked AWS SDKs
+#test Alibaba OSS
+from src.smlibrary.object_storage.mocked_s3.to_oss import to_oss
+#aws_oss = to_oss("/Users/haidongzhao/credential/alibaba.json", "thumbnail-london")
+#aws_oss.upload_file("../../benchmark_dataset/thumbnail_picture/5mb.jpg","thumbnail-london","cat.jpg")
+#aws_oss.delete_object("thumbnail-london", "cat.jpg")
+#buf = aws_oss.get_object("thumbnail-london","cat.jpg")
+#aws_oss.download_file("thumbnail-london", "cat.jpg", "cat.jpg")

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='smlibrary',
-    version='0.4',
+    version='0.6',
     license='MIT',
     author="",
     author_email='',
