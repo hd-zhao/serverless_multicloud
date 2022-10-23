@@ -14,10 +14,22 @@ We support two latency classes: end-to-end delay and response time, you can opt 
 
 The invocation frist upload an object to object storage. This operation then trigger a function instance to retrieve from the object storage service and process it.
 
-AWS Lambda: `python adapter.py -p aws -s object_storage -a thumbnail -mu 0.1  -t 15 -m 1024 -o upload -l e2e_delay`
+AWS Lambda: 
 
-Google Cloud FunctionL: ``python adapter.py -p google -s object_storage -a thumbnail -mu 0.1  -t 15 -m 1024 -o upload -l e2e_delay``
+```bash
+python adapter.py -p aws -s object_storage -a thumbnail -mu 0.1  -t 15 -m 1024 -o upload -l e2e_delay
+```
 
-Alibaba Function Compute: ``python adapter.py -p alibaba -s object_storage -a thumbnail -mu 0.1  -t 15 -m 1024 -o upload -l e2e_delay``
+Google Cloud Function: 
+
+```bash
+python adapter.py -p google -s object_storage -a thumbnail -mu 0.1  -t 15 -m 1024 -o upload -l e2e_delay
+```
+
+Alibaba Function Compute:
+
+```bash
+python adapter.py -p alibaba -s object_storage -a thumbnail -mu 0.1  -t 15 -m 1024 -o upload -l e2e_delay
+```
 
 
