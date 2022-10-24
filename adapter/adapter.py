@@ -2,6 +2,7 @@ import argparse,json
 import object_storage
 import cloud_function
 import sys
+import os
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -41,7 +42,7 @@ if __name__ == "__main__":
 
     if args.so == "object_storage":
         object_storage.operation(args.provider, 
-                                config[args.provider]["credential"],    
+                                os.path.expanduser(config[args.provider]["credential"]),    
                                 config[args.provider]['bucket'],  
                                 config[args.provider]['object'],   
                                 args.application,

@@ -2,19 +2,19 @@
 
 {
     "aws":{ 
-        "credential": "/Users/haidongzhao/credential/aws.json",
+        "credential": "~/credential/aws.json",
         "bucket": "thumbnail-london",
         "object": "../benchmark_dataset/thumbnail_picture/5mb.jpg"
 
     },
     "google":{ 
-        "credential": "/Users/haidongzhao/credential/google_cloud.json",
+        "credential": "~/credential/google_cloud.json",
         "bucket": "thumbnail-london",
         "object": "../benchmark_dataset/thumbnail_picture/5mb.jpg"
         
     },
     "alibaba":{ 
-        "credential": "/Users/haidongzhao/credential/alibaba.json",
+        "credential": "~/credential/alibaba.json",
         "bucket": "thumbnail-london",
         "object": "../benchmark_dataset/thumbnail_picture/5mb.jpg"
 
