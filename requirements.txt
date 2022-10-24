@@ -1,0 +1,5 @@
+boto3
+google-cloud-storage
+smlibrary
+oss2
+pandas
