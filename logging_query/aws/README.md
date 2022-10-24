@@ -24,4 +24,10 @@ In lambda function, we add [object, timestamp] as message, e.g., Benchmark objec
         | parse '* *:* *:*' as benchmark, object_symbol, object, timestamp_symbol,timestamp
         | limit 2000
 ```
+as shown in the picture below:
 
+<img
+  src="https://github.com/hd-zhao/serverless_multicloud/blob/main/asset/aws2.png"
+  alt="Alt text"
+  title="Enter into CloudWatch"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
