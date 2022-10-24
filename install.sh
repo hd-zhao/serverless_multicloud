@@ -9,4 +9,4 @@ python get-pip.py
 echo "export PATH=\${PATH}:~/.local/bin" >> ~/.bashrc
 source ~/.bashrc
 sudo apt install zip -y
-pip install -r requirements.txtp
+pip install -r requirements.txt
