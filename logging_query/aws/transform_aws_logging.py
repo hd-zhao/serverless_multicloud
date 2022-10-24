@@ -6,7 +6,7 @@ def excute_mem(gbs_data, dataset_name):
     save_data = pd.DataFrame([])
     dataset = gbs_data
 
-    data=pd.read_csv(dataset+"-mem.csv")
+    data=pd.read_csv("../log/"+dataset+"-mem.csv")
     data.Timestamp = pd.to_datetime(data.Timestamp).astype(int)/10**6
     data.Timestamp = data.Timestamp.astype('int')
     transform_data = pd.DataFrame([])
@@ -22,7 +22,7 @@ def excute_mem(gbs_data, dataset_name):
 def excute_latency(latency_data,dataset_name):
 
     save_data = pd.DataFrame([])
-    data = pd.read_csv(latency_data+"-latency.csv")
+    data = pd.read_csv("../log/"+latency_data+"-latency.csv")
     data_logging = pd.read_csv("logging-aws-"+latency_data+".csv")
     
     column1 = "aws-"+dataset_name+"-object"
