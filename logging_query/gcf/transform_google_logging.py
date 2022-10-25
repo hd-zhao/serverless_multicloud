@@ -8,10 +8,9 @@ def roundup(x):
 def srt_split(x):
     return float(str(x[:-1]))*1000
 
-def excute_mem(gbs_data, dataset_name,memory_usage=None):
+def excute_mem(dataset_name, memory_usage):
     save_data = pd.DataFrame([])
-    dataset = gbs_data
-    data = pd.read_csv(dataset+"-mem.csv")
+    data = pd.read_csv("../log/google-"+dataset_name+"-mem.csv")
     data.timestamp = pd.to_datetime(data.timestamp).astype(int)/10**9
     data.timestamp = data.timestamp.astype('int')
     thumbnail_data = pd.DataFrame([])
@@ -19,14 +18,15 @@ def excute_mem(gbs_data, dataset_name,memory_usage=None):
     data['time_usage'] = data['time_usage'].apply(lambda x: roundup(x))
     thumbnail_data["google-"+dataset_name+"-timestamp"] = data['timestamp']
     thumbnail_data["google-"+dataset_name+"-GBS"] = data['time_usage']/1000*memory_usage/1024
-    if memory_usage == 1024:
-        ghzs_value = 1.4
-    elif memory_usage == 128:
+    
+    if memory_usage == 128:
         ghzs_value = 0.1992
     elif memory_usage == 256:
         ghzs_value = 0.4008
     elif memory_usage == 512:
         ghzs_value = 0.7992
+    elif memory_usage == 1024:
+        ghzs_value = 1.4
     elif memory_usage == 2048:
         ghzs_value = 2.4
     elif memory_usage == 4096 or memory_usage == 8192:
@@ -40,19 +40,12 @@ def excute_mem(gbs_data, dataset_name,memory_usage=None):
     path = "../../dataset/"+"google-"+dataset_name+"-bill.csv"
     save_data.to_csv(path,index=False)
 
-def excute_mem_2(gbs_data, dataset_name,memory_usage=None):
+def excute_mem_2(dataset_name,memory_usage=None):
     save_data = pd.DataFrame([])
-    dataset = gbs_data
-    data = pd.read_csv(dataset+"-mem.csv")
-    #data.timestamp = pd.to_datetime(data.protoPayload.response.metadata.creationTimestam).astype(int)/10**9
-    #data.timestamp = data.timestamp.astype('int')
+    data = pd.read_csv("../log/google-"+dataset_name+"-mem.csv")
     thumbnail_data = pd.DataFrame([])
     data['time_usage'] = data['httpRequest.latency']
     data['time_usage'] = data['time_usage'].apply(lambda x:srt_split(x)).astype('int')
-
-    print(data['time_usage']) 
-
-    #.astype('int')
     data['time_usage'] = data['time_usage'].apply(lambda x: roundup(x))
     thumbnail_data["google-"+dataset_name+"-timestamp"] = data['timestamp']
     thumbnail_data["google-"+dataset_name+"-GBS"] = data['time_usage']/1000*memory_usage/1024
@@ -65,27 +58,22 @@ def excute_mem_2(gbs_data, dataset_name,memory_usage=None):
     path = "../../dataset/"+"google-"+dataset_name+"-bill.csv"
     save_data.to_csv(path,index=False)
 
-def excute_latency(latency_data,dataset_name):
-    save_data = pd.DataFrame([])
-    
-    data1 = pd.read_csv(latency_data+"-latency.csv")
-    #print(data1['textPayload'])
-    data_logging = pd.read_csv("logging-google-"+latency_data+".csv")
+def e2e_latency(dataset_name):
+    pd.set_option('display.max_rows', None)
+    save_data = pd.DataFrame([]) 
+    data1 = pd.read_csv("../log/google-"+dataset_name+"-latency.csv")
+    data_logging = pd.read_csv("../log/google-"+dataset_name+".csv")
     data = pd.DataFrame([])
     column1 = "google-"+dataset_name+"-object"
     column2 = "google-"+dataset_name+"-timestamp"
     data["object"] = data1['textPayload'].str.split().str[2]
     data["google-"+dataset_name+"-timestamp"] = data1['textPayload'].str.split().str[4]
-    print(data)
     right_join_df = pd.merge(data_logging, data, on='object', how='right')
     right_join_df[column2] = right_join_df[column2].astype(int)
     right_join_df = right_join_df.fillna(0)
     right_join_df["timestamp"] = right_join_df["timestamp"].astype(int)
-    #print(right_join_df[column2]-right_join_df["timestamp"])
     save_data["latency"] = right_join_df[column2]-right_join_df["timestamp"]
     save_data["object"] = right_join_df['object']
-    print(save_data)
-
     path = "../../dataset/"+"google-"+dataset_name+"-latency.csv"
     save_data.to_csv(path,index=False)
         
@@ -104,8 +92,11 @@ if __name__ == "__main__":
     parser.add_argument("-n", "--general_2", dest="general_gbs2", default=None,
                         help="transform general task memory log2")
 
-    parser.add_argument("-gl", "--general_latency", dest="general_latency", default=None,
-                        help="transform general task latency log")
+    parser.add_argument("-l", "--latency_class", dest="latency", default=None,
+                        help="transform latency log")
+
+    parser.add_argument("-d", "--dataset", dest="dataset", default=None,
+                        help="input dataset")
 
 
 
@@ -113,12 +104,12 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.general_gbs != None:
-        excute_mem(args.general_gbs,args.general_gbs,args.mem)
+        excute_mem(args.general_gbs, args.mem)
 
     if args.general_gbs2 != None:
-        excute_mem_2(args.general_gbs2,args.general_gbs2,args.mem)
+        excute_mem_2(args.general_gbs2,args.mem)
 
-    if args.general_latency != None:
-        excute_latency(args.general_latency,args.general_latency)
+    if args.latency == "e2e_delay":
+        e2e_latency(args.dataset)
 
 

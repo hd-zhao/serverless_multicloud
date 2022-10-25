@@ -4,7 +4,7 @@ import argparse
 
 def excute_mem(dataset_name):
     save_data = pd.DataFrame([])
-    data=pd.read_csv("../log/"+dataset_name+"-mem.csv")
+    data=pd.read_csv("../log/aws-"+dataset_name+"-mem.csv")
     data.Timestamp = pd.to_datetime(data.Timestamp).astype(int)/10**6
     data.Timestamp = data.Timestamp.astype('int')
     transform_data = pd.DataFrame([])
@@ -18,7 +18,7 @@ def excute_mem(dataset_name):
 def e2e_latency(dataset_name):
 
     save_data = pd.DataFrame([])
-    data = pd.read_csv("../log/"+dataset_name+"-latency.csv")
+    data = pd.read_csv("../log/aws-"+dataset_name+"-latency.csv")
     data_logging = pd.read_csv("../log/aws-"+dataset_name+".csv")
     
     column1 = "aws-"+dataset_name+"-object"
