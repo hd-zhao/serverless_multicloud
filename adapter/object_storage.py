@@ -33,7 +33,7 @@ def operation(provider, credential, bucket, object, application, poisson_rate, m
     if(latency_class == "e2e_delay"):
         output.writerow(['timestamp', 'object'])
     elif(latency_class == "response_time"):
-        output.writerow(['response_duration', 'object'])
+        output.writerow(['latency', 'object'])
     
     start_time = time.perf_counter()
     while(time.perf_counter() - start_time <= duration * 60):   #benchmark duration
