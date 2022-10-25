@@ -7,7 +7,7 @@
   src="https://github.com/hd-zhao/serverless_multicloud/blob/main/asset/aws1.png"
   alt="Alt text"
   title="Enter into CloudWatch"
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+  style="display: inline-block; margin: 0 auto; max-width: 200px">
 
 ## query the aws lambda logging in CloudWatch dashboard
 
@@ -30,4 +30,9 @@ as shown in the picture below:
   src="https://github.com/hd-zhao/serverless_multicloud/blob/main/asset/aws2.png"
   alt="Alt text"
   title="Enter into CloudWatch"
-  style="display: inline-block; margin: 0 auto; max-width: 300px">
+  style="display: inline-block; margin: 0 auto; max-width: 200px">
+
+## transform AWS logs
+
+Save cloud logs and local logs in [/log](https://github.com/hd-zhao/serverless_multicloud/tree/main/logging_query/log)
+
