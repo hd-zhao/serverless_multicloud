@@ -18,7 +18,7 @@ def make_thumbnail(data, context):
     keys = data['name']
     get_time = ntp.get_timestamp_ms()
     if(get_time != 0):
-        print("Benchmark object {} timestamp {}".format(key, get_time))
+        print("Benchmark object {} timestamp {}".format(keys, get_time))
 
     tmpkey = keys.replace('/', '')
     download_path = '/tmp/{}{}'.format(uuid.uuid4(), tmpkey)
