@@ -16,7 +16,7 @@ def excute_mem(dataset_name):
     data['timestamp'] = data.invocationStartTimestamp.astype(int)
     data['time_usage'] = data['durationMs'].apply(lambda x: roundup(x))
     memory_usuage = data.iloc[0].memoryMB
-
+    
     transform_data["alibaba-"+dataset_name+"-timestamp"] = data['timestamp']
     transform_data["alibaba-"+dataset_name+"-GBS"] = round(data['time_usage']/1000*memory_usuage/1024,2)
     transform_data["alibaba-"+dataset_name+"-billingduration"] = data['time_usage'].astype(int)
