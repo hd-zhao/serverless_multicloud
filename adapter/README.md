@@ -8,6 +8,10 @@ We assume that the invocation is complied with poisson arrival instead of burst 
 
 We support two latency classes: end-to-end delay and response time, you can opt for one in command line by `-l e2e_delay` and `response_time`, respectively.
 
+## HTTP trigger
+
+To invoke Google Cloud Functions, it needs an endpoint that is configured in the `~/credential/google_cloud.json` file. We use the unauthorized type of function.
+
 ## Application Benchmarks 
 
 ### Image Resize: thumbnail
@@ -17,19 +21,36 @@ The invocation frist upload an object to object storage. This operation then tri
 AWS Lambda: 
 
 ```bash
-python adapter.py -p aws -s object_storage -a thumbnail -mu 0.1  -t 15 -m 1024 -o upload -l e2e_delay
+python adapter.py -p aws -s object_storage -a thumbnail -mu 0.1  -t 20 -m 1024 -o upload -l e2e_delay
 ```
 
 Google Cloud Function: 
 
 ```bash
-python adapter.py -p google -s object_storage -a thumbnail -mu 0.1  -t 15 -m 1024 -o upload -l e2e_delay
+python adapter.py -p google -s object_storage -a thumbnail -mu 0.1  -t 20 -m 1024 -o upload -l e2e_delay
 ```
 
 Alibaba Function Compute:
 
 ```bash
-python adapter.py -p alibaba -s object_storage -a thumbnail -mu 0.1  -t 15 -m 1024 -o upload -l e2e_delay
+python adapter.py -p alibaba -s object_storage -a thumbnail -mu 0.1  -t 20 -m 1024 -o upload -l e2e_delay
+```
+### Image Resize: thumbnail (HTTP trigger) for comparison
+
+AWS Lambda: 
+
+```bash
+python adapter.py -p aws -s http -a thumbnail-http -mu 0.1  -t 20 -m 1024 -l e2e_delay
 ```
 
+Google Cloud Function: 
 
+```bash
+python adapter.py -p google -s http -a thumbnail-http -mu 0.1  -t 20 -m 1024 -l e2e_delay
+```
+
+Alibaba Function Compute:
+
+```bash
+python adapter.py -p alibaba -s http -a thumbnail-http -mu 0.1  -t 20 -m 1024 -l e2e_delay
+```

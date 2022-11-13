@@ -1,0 +1,32 @@
+{
+    "aws":{ 
+        "credential": "~/credential/aws.json",
+        "function": "thumbnail-http",
+        "payload":{
+            "download_bucket": "normalization-london",
+            "object_name": "30mb.jpg",
+            "upload_bucket": "normcf"
+        }
+
+    },
+    "google":{ 
+        "credential": "~/credential/google_cloud.json",
+        "function": "thumbnail-http",
+        "payload":{
+            "download_bucket": "normalization-london",
+            "object_name": "30mb.jpg",
+            "upload_bucket": "normcf"
+        }
+        
+    },
+    "alibaba":{ 
+        "credential": "~/credential/alibaba.json",
+        "function": "thumbnail-http",
+        "payload":{
+            "download_bucket": "normalization-london",
+            "object_name": "30mb.jpg",
+            "upload_bucket": "normcf"
+        }
+
+    }
+}

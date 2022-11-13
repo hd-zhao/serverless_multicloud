@@ -51,7 +51,26 @@ if __name__ == "__main__":
                                 args.latency_category,
                                 args.operation,
                                 args.minute)
+    elif args.so == "http":
+        function = config[args.provider]['function']
+        if args.provider == "google":
+            credential_path = os.path.expanduser(config[args.provider]["credential"])
+            credential_file = json.load(open(credential_path))
+            function = credential_file["end_point"][function]
+        if args.provider == "alibaba":
+            credential_path = os.path.expanduser(config[args.provider]["credential"])
+            credential_file = json.load(open(credential_path))
+            function = credential_file["oss"]["end_point"][function]
 
+        cloud_function.operation(args.provider, 
+                                 os.path.expanduser(config[args.provider]["credential"]),  
+                                 function,
+                                 config[args.provider]['payload'], 
+                                 args.application,
+                                 args.mu,
+                                 args.memory,
+                                 args.latency_category,
+                                 args.minute)
     else:
         print("Please input correct serverless offerings.")
         exit()

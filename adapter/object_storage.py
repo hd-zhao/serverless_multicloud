@@ -26,7 +26,7 @@ def upload_thread(provider,output, latency_class, bucket, credential, object_nam
 
 
 
-def operation(provider, credential, bucket, object, application, poisson_rate, memory_allocation, latency_class, operation, duration):
+def operation(provider, credential, bucket, object, application, poisson_rate, memory_allocation, latency_class, duration):
 
     # save local logs to thr cloud log query directory for collective analysis
     output = csv.writer(open('../logging_query/log/'+provider+'-'+application+'-'+memory_allocation+".csv", 'w'))
