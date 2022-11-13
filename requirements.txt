@@ -1,5 +1,6 @@
 boto3
 google-cloud-storage
+aliyun-fc2
 smlibrary
 oss2
 pandas
