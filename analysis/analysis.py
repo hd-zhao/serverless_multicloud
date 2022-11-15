@@ -108,6 +108,7 @@ def cost_analysis(provider, application, request_num, data_size):
   request_fee = round(request_price*request_num,2)
   network_fee = round(request_num*network_traffic_price*data_size,2)
   duration_fee = round(gbs_price*request_num*avg_gbs,2)
+
   if provider == "google":
     ghz_fee = round(avg_ghz*request_num*ghz_price,2)
     duration_fee += ghz_fee
@@ -165,9 +166,7 @@ def cost_detail_figure(evaluate_provider, application, request_num, data_size):
     value_duration_fee.append(duration_fee)
     value_network_fee.append(network_fee)
     value_request_fee.append(request_fee)
-    print(provider)
-    print(total_fee, duration_fee, network_fee, request_fee, free_total_fee, free_duration_fee, free_network_fee, free_request_fee, avg_bd)
-    print()
+
 
   plt.bar(X_axis+position[0], value_total_cost, width, color = cost_color["Total cost"], label="Total cost")
   plt.bar(X_axis+position[1], value_duration_fee, width, color = cost_color["Duration fee"], label="Duration fee")
@@ -197,22 +196,22 @@ def performance_cost(evaluate_provider, application, memory_array, request_num, 
   X_axis = np.arange(len(memory_array))
   width = 0.2
   position = [-width, 0, width]
-
+  
   fig, ax = plt.subplots()
   ax2 = ax.twinx()
-  for i in range(0,len(memory_array)):
+  for i in range(0,len(evaluate_provider)):
     ax.bar(X_axis+position[i], value_bd[evaluate_provider[i]], width, color = color[evaluate_provider[i]], label=evaluate_provider[i])
 
-  for i in range(0,len(memory_array)):
+  for i in range(0,len(evaluate_provider)):
     ax2.plot(X_axis, value_cost[evaluate_provider[i]], color = color[evaluate_provider[i]], label=evaluate_provider[i], linewidth=1)
-  ax.set_ylim(top=6500)
-  ax2.set_ylim(bottom=0, top=120)
+  ax.set_ylim(top=1200)
+  ax2.set_ylim(bottom=0, top=16)
   plt.xticks(X_axis, memory_array)
   ax.set_xlabel("Memory size (MB)")
   plt.ylabel('Avg. billing duration (ms)')
   ax.set_ylabel('Avg. billing duration (ms)')
   ax2.set_ylabel('1M requests total cost ($)')
-  plt.legend(loc='upper left', ncol=len(evaluate_provider))
+  plt.legend(loc='upper center', ncol=len(evaluate_provider))
   plt.savefig("figure/"+application+"-cost_performance_co_analysis.pdf", format='pdf', dpi=DPI, bbox_inches='tight')
 
   
