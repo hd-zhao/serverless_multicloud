@@ -1,0 +1,29 @@
+{
+    "aws":{ 
+        "credential": "~/credential/aws.json",
+        "function": "inference",
+        "payload":{
+            "bucket": "inference",
+            "object": "cat.npy"
+        }
+
+    },
+    "google":{ 
+        "credential": "~/credential/google_cloud.json",
+        "function": "inference",
+        "payload":{
+            "bucket": "inference",
+            "object": "cat.npy"
+        }
+        
+    },
+    "alibaba":{ 
+        "credential": "~/credential/alibaba.json",
+        "function": "inference",
+        "payload":{
+            "bucket": "inference",
+            "object": "cat.npy"
+        }
+
+    }
+}

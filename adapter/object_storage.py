@@ -29,10 +29,12 @@ def upload_thread(provider,output, latency_class, bucket, credential, object_nam
 def operation(provider, credential, bucket, object, application, poisson_rate, memory_allocation, latency_class, duration):
 
     # save local logs to thr cloud log query directory for collective analysis
-    output = csv.writer(open('../logging_query/log/'+provider+'-'+application+'-'+memory_allocation+".csv", 'w'))
+
     if(latency_class == "e2e_delay"):
+        output = csv.writer(open('../logging_query/log/'+provider+'-'+application+'-'+memory_allocation+".csv", 'w'))
         output.writerow(['timestamp', 'object'])
     elif(latency_class == "response_time"):
+        output = csv.writer(open('../dataset/'+provider+'-'+application+'-'+memory_allocation+"-latency.csv", 'w'))
         output.writerow(['latency', 'object'])
     
     start_time = time.perf_counter()

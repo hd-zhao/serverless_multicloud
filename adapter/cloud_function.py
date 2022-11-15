@@ -13,12 +13,13 @@ def add_payload(dict,unique_id):
     return dict
 
 def invoke(provider, output, latency_class, credential, function, payload, unique_id):
-    operation_time_start = time.perf_counter()
+    operation_time_start = int(datetime.timestamp(datetime.now())*1000)
     if(provider == "aws"):
         aws_trigger.invoke(credential,function,"sync",payload)
     elif(provider == "google"):
         # now function = end_point, configured in credential file
         return_value = google_trigger.invoke(credential,function,"sync",payload, function)
+        print(return_value.headers['content-length'])
     elif(provider == "alibaba"):
         # add endpoint, configured in credential file
         return_value = alibaba_trigger.invoke(credential,function,"sync",payload, function)
@@ -27,7 +28,8 @@ def invoke(provider, output, latency_class, credential, function, payload, uniqu
         print("Please check provider.")
         exit()
 
-    operation_duration = time.perf_counter() - operation_time_start
+    operation_time_end = int(datetime.timestamp(datetime.now())*1000)
+    operation_duration = operation_time_end - operation_time_start
     if(latency_class == "response_time"):
         output.writerow([int(operation_duration), unique_id])
 
@@ -35,10 +37,11 @@ def invoke(provider, output, latency_class, credential, function, payload, uniqu
 def operation(provider, credential, function, payload, application, poisson_rate, memory_allocation, latency_class, duration):
 
     # save local logs to thr cloud log query directory for collective analysis
-    output = csv.writer(open('../logging_query/log/'+provider+'-'+application+'-'+memory_allocation+".csv", 'w'))
     if(latency_class == "e2e_delay"):
+        output = csv.writer(open('../logging_query/log/'+provider+'-'+application+'-'+memory_allocation+".csv", 'w'))
         output.writerow(['timestamp', 'object'])
     elif(latency_class == "response_time"):
+        output = csv.writer(open('../dataset/'+provider+'-'+application+'-'+memory_allocation+"-latency.csv", 'w'))
         output.writerow(['latency', 'object'])
     
     start_time = time.perf_counter()

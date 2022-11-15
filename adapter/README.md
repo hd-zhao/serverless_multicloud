@@ -54,3 +54,23 @@ Alibaba Function Compute:
 ```bash
 python adapter.py -p alibaba -s http -a thumbnail-http -mu 0.1  -t 20 -m 1024 -l e2e_delay
 ```
+
+### ML Inference
+
+AWS Lambda: 
+
+```bash
+python adapter.py -p aws -s http -a inference -mu 0.1  -t 20 -m 1024 -l response_time
+```
+
+Google Cloud Function: 
+
+```bash
+python adapter.py -p google -s http -a inference -mu 0.1  -t 20 -m 1024 -l response_time
+```
+
+Alibaba Function Compute:
+
+```bash
+python adapter.py -p alibaba -s http -a inference -mu 0.1  -t 20 -m 1024 -l response_time
+```
