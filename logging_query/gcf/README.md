@@ -25,7 +25,7 @@ In google cloud function, add [object, timestamp] for logging to measure the lat
 
 
 
-## transform AWS logs
+## transform Google logs
 
 Save cloud logs and local logs in [/log](https://github.com/hd-zhao/serverless_multicloud/tree/main/logging_query/log)
 

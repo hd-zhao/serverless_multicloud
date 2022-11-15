@@ -24,7 +24,7 @@ def excute_mem(dataset_name):
     intermediate_name = "alibaba-"+dataset_name+"-timestamp"
     transform_data = transform_data.sort_values(by=intermediate_name,ascending=True)
     save_data = pd.concat([save_data, transform_data],axis=1)
-    
+    print(memory_usuage)
     path = "../../dataset/"+"alibaba-"+dataset_name+"-bill.csv"
     save_data.to_csv(path,index=False)
 
